@@ -1,0 +1,222 @@
+{
+  "users": [
+    {
+      "image": "https://images.unsplash.com/flagged/photo-1564767609342-620cb19b2357?q=80&w=1546&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "id": "4836",
+      "name": "h",
+      "email": "hasan1@gmail.com",
+      "password": "123456"
+    },
+    {
+      "image": "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+      "id": "1",
+      "name": "hasan",
+      "email": "hasan7@gmail.com",
+      "password": "sdads"
+    },
+    {
+      "image": "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+      "id": "9aed",
+      "name": "Hasan",
+      "email": "hasan91@gmail.com",
+      "password": "fsdf"
+    },
+    {
+      "image": "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+      "id": "541a",
+      "name": "Ahmed",
+      "email": "maghrabyhasan@gmail.com",
+      "password": "fdgfdg"
+    },
+    {
+      "image": "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+      "id": "a98c",
+      "name": "Ahmed",
+      "email": "hasan2@gmail.com",
+      "password": "ewrer"
+    },
+    {
+      "image": "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+      "id": "9927",
+      "name": "Ahmed",
+      "email": "hasan9@gmail.com",
+      "password": "erwrew"
+    },
+    {
+      "image": "https://images.unsplash.com/flagged/photo-1564767609342-620cb19b2357?q=80&w=1546&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "id": "2dc5",
+      "name": "Hasan",
+      "email": "hasan6@gmail.com",
+      "password": "dsfd"
+    }
+  ],
+  "chats": [
+    {
+      "id": "309c",
+      "message": "fdsdf",
+      "userId": "1",
+      "receiverId": "a98c"
+    },
+    {
+      "id": "5148",
+      "message": "dsfdf",
+      "userId": "1",
+      "receiverId": "a98c"
+    },
+    {
+      "id": "c0c9",
+      "message": "dfdsfsdf",
+      "userId": "1",
+      "receiverId": "541a"
+    },
+    {
+      "id": "6d96",
+      "message": "dfdsf",
+      "userId": "1",
+      "receiverId": "9aed"
+    },
+    {
+      "id": "8b07",
+      "message": "hello user 484",
+      "userId": "4836",
+      "receiverId": "1"
+    },
+    {
+      "id": "7192",
+      "message": "Hello I am user hasan6",
+      "userId": "9927",
+      "receiverId": "1"
+    },
+    {
+      "id": "a4ed",
+      "message": "Hello I am user hasan 6",
+      "userId": "9927",
+      "receiverId": "9927"
+    },
+    {
+      "id": "08b2",
+      "message": "Hello I am user hasan 6",
+      "userId": "9927",
+      "receiverId": "a98c"
+    },
+    {
+      "id": "74cb",
+      "message": "Hello I am user hasan 6",
+      "userId": "9927",
+      "receiverId": "541a"
+    },
+    {
+      "id": "2c5a",
+      "message": "Hello I am user hasan 6",
+      "userId": "9927",
+      "receiverId": "9aed"
+    },
+    {
+      "id": "35a4",
+      "message": "Hello I am user hasan 6",
+      "userId": "9927",
+      "receiverId": "4836"
+    },
+    {
+      "id": "7b5b",
+      "message": "Hello I am user  hasan 1",
+      "userId": "4836",
+      "receiverId": "9927"
+    },
+    {
+      "id": "f365",
+      "message": "How are you?",
+      "userId": "9927",
+      "receiverId": "4836"
+    },
+    {
+      "id": "f919",
+      "message": "I am fine",
+      "userId": "4836",
+      "receiverId": "9927"
+    },
+    {
+      "id": "bbdd",
+      "message": "dfdsfdsf",
+      "userId": "4836",
+      "receiverId": "1"
+    },
+    {
+      "id": "b87f",
+      "message": "dsfmdsflkl;sdkf",
+      "userId": "9927",
+      "receiverId": "4836"
+    },
+    {
+      "id": "d58e",
+      "message": "dfsafdsa",
+      "userId": "9927",
+      "receiverId": "4836"
+    },
+    {
+      "id": "87d7",
+      "message": "hello user 6 with photo",
+      "userId": "1",
+      "receiverId": "9927"
+    },
+    {
+      "id": "95f7",
+      "message": "hello",
+      "userId": "4836",
+      "receiverId": "9aed"
+    },
+    {
+      "id": "af26",
+      "message": "hello",
+      "userId": "4836",
+      "receiverId": "541a"
+    },
+    {
+      "id": "6fd2",
+      "message": "hello",
+      "userId": "4836",
+      "receiverId": "a98c"
+    },
+    {
+      "id": "3a56",
+      "message": "sadsad",
+      "userId": "4836",
+      "receiverId": "4836"
+    },
+
+    {
+      "id": "f967",
+      "message": "dsfdf",
+      "userId": "9927",
+      "receiverId": "4836"
+    },
+    {
+      "id": "bbec",
+      "message": "xcvcv",
+      "userId": "9927",
+      "receiverId": "4836",
+      "createdAt": "dsfs"
+    },
+    {
+      "id": "19ac",
+      "message": "fdgsfg",
+      "userId": "9927",
+      "receiverId": "4836",
+      "createdAt": "2025-03-15T01:56:22.696Z"
+    },
+    {
+      "id": "acdb",
+      "message": "dfshj",
+      "userId": "9927",
+      "receiverId": "4836",
+      "createdAt": "2025-03-15T02:11:23.028Z"
+    },
+    {
+      "id": "0c4f",
+      "message": "vxccvx",
+      "userId": "9927",
+      "receiverId": "4836",
+      "createdAt": "2025-03-15T02:18:43.322Z"
+    }
+  ]
+}
