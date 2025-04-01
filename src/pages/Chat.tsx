@@ -1,7 +1,7 @@
-import { CreateMessage } from "../components/Messages/components/CreateMessage";
 import useChat from "../hooks/use-chat";
-import { BodyChat } from "../components/BodyChat";
 import { HeaderChat } from "../components/HeaderChat";
+import { BodyChat } from "../components/BodyChat";
+import { FooterChat } from "../components/FooterChat";
 import { useEffect, useRef } from "react";
 import { User } from "../shared/types/user";
 
@@ -45,7 +45,7 @@ const Chat = () => {
         messagesEndRef={messagesEndRef}
       />
 
-      <CreateMessage chatPartner={chatPartner} />
+      <FooterChat chatPartner={chatPartner} />
     </div>
   );
 };

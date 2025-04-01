@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import classNames from "classnames";
-import { useUsers } from "../../Users/hooks/use-users";
+import { useUsers } from "../../../hooks/use-users";
 
 const useAuth = () => {
   const { signup, setCurrentUser, users } = useUsers();

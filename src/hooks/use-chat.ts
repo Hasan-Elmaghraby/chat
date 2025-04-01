@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import useMessage from "../components/Messages/hooks/use-message";
+import useMessage from "./use-message";
 import { useNavigate } from "react-router";
-import { useUsers } from "../components/Users/hooks/use-users";
+import { useUsers } from "./use-users";
 import { ChatPartner } from "../shared/types/chat";
 
 const useChat = () => {

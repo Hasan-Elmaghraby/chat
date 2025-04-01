@@ -1,5 +1,5 @@
 import React from "react";
-import { Messages } from "../Messages";
+import { Messages } from "./components/Messages";
 import { Users } from "../Users";
 import { useStatusUser } from "../../hooks/use-status";
 import { useEffect, useState } from "react";
@@ -34,11 +34,13 @@ export const BodyChat: React.FC<BodyChatProps> = ({
 }) => {
   const { statusPartner, statusUser } = useStatusUser();
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
     }, 2000);
   }, []);
+
   return (
     <div className="flex flex-1 overflow-hidden">
       <div

@@ -1,10 +1,10 @@
 import { useEffect, useMemo } from "react";
-import useMessage from "./hooks/use-message";
-import { useUsers } from "../Users/hooks/use-users";
-import TimeDifference from "../../shared/components/Clock";
-import { UserImage } from "../Users/components/UserImage";
-import { HighlightSearch } from "../HeaderChat/components/HighlightSearch";
-import { ChatPartner } from "../../shared/types/chat";
+import useMessage from "../../../../hooks/use-message";
+import { useUsers } from "../../../../hooks/use-users";
+import TimeDifference from "../../../../shared/components/Clock";
+import { UserImage } from "../../../Users/components/UserImage";
+import { HighlightSearch } from "../../../../shared/components/HighlightSearch";
+import { ChatPartner } from "../../../../shared/types/chat";
 
 interface ChatMessageProps {
   chatPartner: ChatPartner | undefined | null;

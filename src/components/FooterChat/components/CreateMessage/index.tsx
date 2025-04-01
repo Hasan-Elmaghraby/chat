@@ -1,7 +1,7 @@
 import { Send } from "lucide-react";
 import { useState } from "react";
-import useMessage from "../../hooks/use-message";
-import { useUsers } from "../../../Users/hooks/use-users";
+import useMessage from "../../../../hooks/use-message";
+import { useUsers } from "../../../../hooks/use-users";
 
 interface ChatPartner {
   id: string;
