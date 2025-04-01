@@ -1,6 +1,3 @@
-import React, { useEffect, useState } from "react";
-import { useUsers } from "../hooks/use-users";
-
 interface UserImageProps {
   src: string | undefined;
   alt: string;

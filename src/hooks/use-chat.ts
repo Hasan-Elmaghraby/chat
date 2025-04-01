@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
-import useMessage from "../hooks/use-message";
+import useMessage from "../components/Messages/hooks/use-message";
 import { useNavigate } from "react-router";
-import { useUsers } from "../hooks/use-users";
+import { useUsers } from "../components/Users/hooks/use-users";
+import { ChatPartner } from "../shared/types/chat";
 
 const useChat = () => {
   const navigate = useNavigate();
   const { fetchChats, chatsData } = useMessage();
   const { currentUser, users } = useUsers();
-  const [chatPartner, setChatPartner] = useState<string[] | undefined | null>(
-    null
-  );
+  const [chatPartner, setChatPartner] = useState<
+    ChatPartner | undefined | null
+  >(null);
   const [open, setOpen] = useState(false);
-  const [msgFiltered, setMsgFiltered] = useState([]);
+  const [msgFiltered, setMsgFiltered] = useState<string[]>([]);
 
   const handleToggleClick = () => {
     setOpen(!open);
@@ -21,15 +22,15 @@ const useChat = () => {
     if (currentUser?.id && users.length > 1) {
       const defaultPartner = users.find((u) => u.id !== currentUser.id);
       if (defaultPartner) {
-        setChatPartner(defaultPartner);
-        fetchChats(currentUser?.id, defaultPartner?.id);
+        setChatPartner(defaultPartner as ChatPartner);
+        fetchChats(currentUser?.id, defaultPartner?.id as string);
       }
     }
   }, [currentUser, users, fetchChats]);
 
-  const handleSelectChat = (user) => {
+  const handleSelectChat = (user: ChatPartner) => {
     setChatPartner(user);
-    fetchChats(currentUser?.id, user.id);
+    fetchChats(currentUser?.id ?? "", user.id);
   };
 
   const handleClickProfile = () => {

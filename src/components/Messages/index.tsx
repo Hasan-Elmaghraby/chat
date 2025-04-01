@@ -1,20 +1,21 @@
-import { useMemo } from "react";
-import useMessage from "../hooks/use-message";
-import { useUsers } from "../hooks/use-users";
-import TimeDifference from "./Clock";
-import { UserImage } from "./UserImage";
-import { HighlightSearch } from "./HighlightSearch";
+import { useEffect, useMemo } from "react";
+import useMessage from "./hooks/use-message";
+import { useUsers } from "../Users/hooks/use-users";
+import TimeDifference from "../../shared/components/Clock";
+import { UserImage } from "../Users/components/UserImage";
+import { HighlightSearch } from "../HeaderChat/components/HighlightSearch";
+import { ChatPartner } from "../../shared/types/chat";
 
 interface ChatMessageProps {
-  chatPartner: string[] | undefined | null;
+  chatPartner: ChatPartner | undefined | null;
   userImage: string | undefined;
-  partnerUserImage: string;
+  partnerUserImage: string | undefined;
   msgFiltered: string[];
   statusPartner: boolean;
   statusUser: boolean;
 }
 
-export const ShowChat: React.FC<ChatMessageProps> = ({
+export const Messages: React.FC<ChatMessageProps> = ({
   chatPartner,
   userImage,
   partnerUserImage,
@@ -22,8 +23,14 @@ export const ShowChat: React.FC<ChatMessageProps> = ({
   statusPartner,
   statusUser,
 }) => {
-  const { chatsData } = useMessage();
+  const { chatsData, fetchChats } = useMessage();
   const { currentUser } = useUsers();
+
+  useEffect(() => {
+    if (currentUser?.id && chatPartner?.id) {
+      fetchChats(currentUser?.id, chatPartner?.id);
+    }
+  }, [currentUser, chatPartner, fetchChats]);
 
   const filteredMessages = useMemo(
     () =>
@@ -39,7 +46,7 @@ export const ShowChat: React.FC<ChatMessageProps> = ({
   if (!currentUser) return null;
 
   return (
-    <div className="flex-1 overflow-hidden mt-10">
+    <div className="flex-1 overflow-hidden ">
       <div className="h-full overflow-y-auto p-4">
         <div>
           {filteredMessages.map(({ id, message, userId, createdAt }) => {

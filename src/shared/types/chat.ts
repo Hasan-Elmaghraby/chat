@@ -1,4 +1,4 @@
-export interface User {
+export interface ChatPartner {
   id: string;
   name: string;
   image: string;

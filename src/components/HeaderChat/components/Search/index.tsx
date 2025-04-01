@@ -13,7 +13,7 @@ export const Search: React.FC<SearchProps> = ({ onChange }) => {
   };
 
   return (
-    <div className="p-4 z-50 fixed top-0 right-0 flex flex-row items-center">
+    <div className="p-4  flex flex-row items-center ">
       <input
         ref={refInput}
         type="search"

@@ -1,6 +1,6 @@
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import useAuth from "../hooks/use-auth";
-import { ForgotPassword } from "../components/Auth/ForgotPassword";
+import useAuth from "../components/Auth/hooks/use-auth";
+import { ForgotPassword } from "../components/Auth/ForgetPassword";
 import { SwitchLogin } from "../components/Auth/SwitchLogin";
 
 const SignIn = () => {

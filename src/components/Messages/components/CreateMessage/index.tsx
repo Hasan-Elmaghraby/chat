@@ -1,9 +1,20 @@
 import { Send } from "lucide-react";
 import { useState } from "react";
-import useMessage from "../hooks/use-message";
-import { useUsers } from "../hooks/use-users";
+import useMessage from "../../hooks/use-message";
+import { useUsers } from "../../../Users/hooks/use-users";
 
-export const CreateMessage = ({ chatPartner }: { chatPartner: any }) => {
+interface ChatPartner {
+  id: string;
+  name: string;
+}
+
+interface CreateMessageProps {
+  chatPartner: ChatPartner | undefined | null;
+}
+
+export const CreateMessage: React.FC<CreateMessageProps> = ({
+  chatPartner,
+}) => {
   const [text, setText] = useState("");
   const { createMessage } = useMessage();
   const { currentUser } = useUsers();
@@ -12,12 +23,15 @@ export const CreateMessage = ({ chatPartner }: { chatPartner: any }) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!currentUser || !chatPartner || !text.trim()) return;
-    createMessage(currentUser?.id, chatPartner.id, text, currentTime);
+    createMessage(currentUser?.id ?? "", chatPartner.id, text, currentTime);
     setText("");
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-4 flex flex-end mt-auto">
+    <form
+      onSubmit={handleSubmit}
+      className="p-4 flex flex-end mt-auto bg-gray-500"
+    >
       <input
         type="text"
         value={text}

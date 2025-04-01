@@ -1,31 +1,15 @@
 import axios from "axios";
-import { createContext, useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 
 interface ChatMessage {
   id: string;
   message: string;
   userId: string;
   receiverId: string;
+  createdAt: string;
 }
 
-interface MessageContextType {
-  chatsData: ChatMessage[];
-  fetchChats: (userId: string, chatPartnerId: string) => Promise<void>;
-  createMessage: (
-    senderId: string,
-    receiverId: string,
-    message: string,
-    createdAt: string
-  ) => Promise<void>;
-}
-
-interface MessageProps {
-  children: React.ReactNode;
-}
-
-const MessageContext = createContext<MessageContextType | undefined>(undefined);
-
-const MessageProvider = ({ children }: MessageProps) => {
+const useMessage = () => {
   const [chatsData, setChatsData] = useState<ChatMessage[]>([]);
 
   const createMessage = async (
@@ -68,13 +52,7 @@ const MessageProvider = ({ children }: MessageProps) => {
     },
     []
   );
-
-  return (
-    <MessageContext.Provider value={{ fetchChats, chatsData, createMessage }}>
-      {children}
-    </MessageContext.Provider>
-  );
+  return { chatsData, fetchChats, createMessage };
 };
 
-export default MessageContext;
-export { MessageProvider };
+export default useMessage;

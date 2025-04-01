@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 interface User {
   image?: string;
@@ -10,21 +10,9 @@ interface User {
   isAdmin?: boolean;
 }
 
-interface UserContextType {
-  users: User[];
-  setUsers: (users: User[]) => void;
-  currentUser: User | null;
-  getUsers: () => Promise<void>;
-  setCurrentUser: (user: User | null) => void;
-  signup: (name: string, email: string, password: string) => Promise<boolean>;
-  logout: () => void;
-}
-
-const UsersContext = createContext<UserContextType | undefined>(undefined);
-
-const UsersProvider = ({ children }: { children: React.ReactNode }) => {
+export const useUsers = () => {
   const [users, setUsers] = useState<User[]>([]);
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [currentUser, setCurrentUser] = useState<User | undefined | null>(null);
 
   const getUsers = async () => {
     try {
@@ -78,21 +66,13 @@ const UsersProvider = ({ children }: { children: React.ReactNode }) => {
     getUsers();
   }, []);
 
-  return (
-    <UsersContext.Provider
-      value={{
-        users,
-        currentUser,
-        setCurrentUser,
-        getUsers,
-        signup,
-        logout,
-        setUsers,
-      }}
-    >
-      {children}
-    </UsersContext.Provider>
-  );
+  return {
+    users,
+    currentUser,
+    setCurrentUser,
+    getUsers,
+    signup,
+    logout,
+    setUsers,
+  };
 };
-
-export { UsersContext, UsersProvider };

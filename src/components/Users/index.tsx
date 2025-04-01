@@ -1,10 +1,11 @@
-import { User } from "../types/user";
+import { User } from "../../shared/types/user";
+import { ChatPartner } from "../../shared/types/chat";
 
 interface UsersProps {
   users: User[];
-  onSelect: (user: User) => void;
+  onSelect: (user: ChatPartner) => void;
   onClick: () => void;
-  currentUser: string[] | undefined | null;
+  currentUser: User | null | undefined;
 }
 
 export const Users: React.FC<UsersProps> = ({
@@ -30,7 +31,7 @@ export const Users: React.FC<UsersProps> = ({
             className="p-4 border-b border-gray-300 flex items-center space-x-4"
           >
             <img
-              onClick={() => onSelect(user)}
+              onClick={() => onSelect(user as ChatPartner)}
               src={user.image}
               alt={user.name}
               className="w-12 h-12 rounded-full cursor-pointer"

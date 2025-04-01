@@ -7,17 +7,13 @@ const TimeDifference = ({ pastTime }: { pastTime: string }) => {
     const updateDifference = () => {
       const now = new Date();
       const past = new Date(pastTime);
-      const diffMs = now.getTime() - past.getTime(); // Difference in milliseconds
+      const diffMs = now.getTime() - past.getTime();
 
-      // console.log("time" + now.getTime());
-
-      // Convert to days, hours, minutes, and seconds
       const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
       const hours = Math.floor(
         (diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
       );
       const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diffMs % (1000 * 60)) / 1000);
 
       setTimeDiff(
         `${days > 0 ? `${days}d ` : ""}${hours > 0 ? `${hours}h ` : ""}${
@@ -26,11 +22,10 @@ const TimeDifference = ({ pastTime }: { pastTime: string }) => {
       );
     };
 
-    // Update every second
     const interval = setInterval(updateDifference, 1000);
-    updateDifference(); // Call immediately
+    updateDifference();
 
-    return () => clearInterval(interval); // Cleanup on unmount
+    return () => clearInterval(interval);
   }, [pastTime]);
 
   return <div className="text-[10px]  ">{timeDiff}</div>;
