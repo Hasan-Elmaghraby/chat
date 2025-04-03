@@ -2,7 +2,6 @@ import useChat from "../hooks/use-chat";
 import { HeaderChat } from "../components/HeaderChat";
 import { BodyChat } from "../components/BodyChat";
 import { FooterChat } from "../components/FooterChat";
-import { useEffect, useRef } from "react";
 import { User } from "../shared/types/user";
 
 const Chat = () => {
@@ -17,12 +16,6 @@ const Chat = () => {
     msgFiltered,
     handleSearch,
   } = useChat();
-
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [msgFiltered]);
 
   return (
     <div className="h-screen flex flex-col">
@@ -42,7 +35,6 @@ const Chat = () => {
         userImage={currentUser?.image}
         partnerUserImage={chatPartner?.image}
         msgFiltered={msgFiltered}
-        messagesEndRef={messagesEndRef}
       />
 
       <FooterChat chatPartner={chatPartner} />

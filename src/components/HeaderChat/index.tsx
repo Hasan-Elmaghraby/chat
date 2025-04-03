@@ -14,7 +14,7 @@ export const HeaderChat: React.FC<HeaderSearchProps> = ({
   onChange,
 }) => {
   return (
-    <div className="bg-gray-500 w-full p-2 flex items-center justify-between">
+    <div className="bg-gray-500 w-full p-2 flex items-center justify-between overflow-hidden">
       <UsersButton open={open} onClick={onClick} />
       <Search onChange={onChange} />
     </div>

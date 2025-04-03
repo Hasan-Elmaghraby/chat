@@ -46,7 +46,7 @@ export const Messages: React.FC<ChatMessageProps> = ({
   if (!currentUser) return null;
 
   return (
-    <div className="flex-1 overflow-hidden ">
+    <div className="flex-1 overflow-hidden   ">
       <div className="h-full overflow-y-auto p-4">
         <div>
           {filteredMessages.map(({ id, message, userId, createdAt }) => {

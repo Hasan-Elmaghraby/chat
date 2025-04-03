@@ -15,7 +15,7 @@ export const Users: React.FC<UsersProps> = ({
   currentUser,
 }) => {
   return (
-    <div className="p-4">
+    <div className="p-4 bg-gray-500">
       <img
         src={currentUser?.image}
         onClick={onClick}

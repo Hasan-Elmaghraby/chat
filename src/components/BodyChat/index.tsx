@@ -1,8 +1,7 @@
-import React from "react";
 import { Messages } from "./components/Messages";
 import { Users } from "../Users";
 import { useStatusUser } from "../../hooks/use-status";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Loader } from "../../shared/components/Loader";
 import { User } from "../../shared/types/user";
 import { ChatPartner } from "../../shared/types/chat";
@@ -17,7 +16,6 @@ interface BodyChatProps {
   userImage: string | undefined;
   partnerUserImage: string | undefined;
   msgFiltered: string[];
-  messagesEndRef: React.RefObject<HTMLDivElement>;
 }
 
 export const BodyChat: React.FC<BodyChatProps> = ({
@@ -30,10 +28,14 @@ export const BodyChat: React.FC<BodyChatProps> = ({
   userImage,
   partnerUserImage,
   msgFiltered,
-  messagesEndRef,
 }) => {
   const { statusPartner, statusUser } = useStatusUser();
   const [loading, setLoading] = useState(true);
+
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [msgFiltered]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -45,8 +47,8 @@ export const BodyChat: React.FC<BodyChatProps> = ({
     <div className="flex flex-1 overflow-hidden">
       <div
         className={`bg-white shadow-lg transition-all duration-700 ${
-          open ? "w-1/4" : "w-0"
-        }`}
+          open ? "w-full sm:w-1/4" : "w-0"
+        } overflow-hidden`}
       >
         {open && (
           <Users
@@ -63,7 +65,11 @@ export const BodyChat: React.FC<BodyChatProps> = ({
         {loading ? (
           <Loader />
         ) : (
-          <div className="flex-1 overflow-y-auto p-2">
+          <div
+            className={`flex-1 overflow-y-auto p-2 transition-all duration-700 sm:w-full ${
+              open && "w-0"
+            } `}
+          >
             <Messages
               chatPartner={chatPartner as ChatPartner | null | undefined}
               userImage={userImage}
@@ -72,9 +78,9 @@ export const BodyChat: React.FC<BodyChatProps> = ({
               statusPartner={statusPartner}
               statusUser={statusUser}
             />
-            <div ref={messagesEndRef} />
           </div>
         )}
+        <div ref={messagesEndRef} />
       </div>
     </div>
   );
