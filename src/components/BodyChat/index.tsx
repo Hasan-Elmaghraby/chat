@@ -46,7 +46,7 @@ export const BodyChat: React.FC<BodyChatProps> = ({
   return (
     <div className="flex flex-1 overflow-hidden">
       <div
-        className={`bg-white shadow-lg transition-all duration-700 ${
+        className={`bg-gray-500 shadow-lg transition-all duration-500 overflow-y-scroll ${
           open ? "w-full sm:w-1/4" : "w-0"
         } overflow-hidden`}
       >

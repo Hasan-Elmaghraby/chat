@@ -1,5 +1,5 @@
-import { useEffect, useMemo } from "react";
-import useMessage from "../../../../hooks/use-message";
+import { useEffect } from "react";
+import { useMessage } from "../../../../hooks/use-message";
 import { useUsers } from "../../../../hooks/use-users";
 import TimeDifference from "../../../../shared/components/Clock";
 import { UserImage } from "../../../Users/components/UserImage";
@@ -30,18 +30,7 @@ export const Messages: React.FC<ChatMessageProps> = ({
     if (currentUser?.id && chatPartner?.id) {
       fetchChats(currentUser?.id, chatPartner?.id);
     }
-  }, [currentUser, chatPartner, fetchChats]);
-
-  const filteredMessages = useMemo(
-    () =>
-      chatsData.filter(
-        (msg) =>
-          (msg.userId === currentUser?.id &&
-            msg.receiverId === chatPartner?.id) ||
-          (msg.userId === chatPartner?.id && msg.receiverId === currentUser?.id)
-      ),
-    [chatsData, currentUser, chatPartner]
-  );
+  }, [currentUser?.id, chatPartner?.id, fetchChats]);
 
   if (!currentUser) return null;
 
@@ -49,7 +38,7 @@ export const Messages: React.FC<ChatMessageProps> = ({
     <div className="flex-1 overflow-hidden   ">
       <div className="h-full overflow-y-auto p-4">
         <div>
-          {filteredMessages.map(({ id, message, userId, createdAt }) => {
+          {chatsData.map(({ id, message, userId, createdAt }) => {
             const isSender = userId === currentUser.id;
 
             return (

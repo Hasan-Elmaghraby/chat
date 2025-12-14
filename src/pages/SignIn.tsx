@@ -1,13 +1,12 @@
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import useAuth from "../components/Auth/hooks/use-auth";
-import { ForgotPassword } from "../components/Auth/ForgetPassword";
 import { SwitchLogin } from "../components/Auth/SwitchLogin";
 
 const SignIn = () => {
   const {
     handleChange,
     handlePassword,
-    handleSubmit,
+    handleSubmitSignin,
     email,
     password,
     showPassword,
@@ -17,7 +16,7 @@ const SignIn = () => {
   } = useAuth();
   return (
     <section>
-      <h1 className="text-3xl font-bold text-center mt-6">Sign Up</h1>
+      <h1 className="text-3xl font-bold text-center mt-6">Sign in</h1>
       <div className="flex justify-center items-center mt-6 flex-wrap px-6 py-12 max-w-6xl mx-auto">
         <div className="  mb-12 md:mb-6  md:w-[67%] lg:w-[50%]">
           <img
@@ -27,7 +26,7 @@ const SignIn = () => {
           />
         </div>
         <div className="w-full md:w-[67%] lg:w-[40%] lg:ml-12">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmitSignin}>
             <input
               className={inputClassName}
               type="email"
@@ -63,7 +62,6 @@ const SignIn = () => {
                 question="Don't have an account?"
                 text="Sign up"
               />
-              <ForgotPassword />
             </div>
 
             <button className={submitClassName} type="submit">

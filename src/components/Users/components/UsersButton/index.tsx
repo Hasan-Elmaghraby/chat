@@ -9,7 +9,7 @@ const UsersButton: React.FC<UsersButtonProps> = ({ open, onClick }) => {
       onClick={onClick}
       className=" top-4 left-4 px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md cursor-pointer"
     >
-      {open ? "Hide" : "Show"}
+      {open ? "Hide" : "users"}
     </button>
   );
 };

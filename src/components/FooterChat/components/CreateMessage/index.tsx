@@ -1,6 +1,6 @@
 import { Send } from "lucide-react";
 import { useState } from "react";
-import useMessage from "../../../../hooks/use-message";
+import { useMessage } from "../../../../hooks/use-message";
 import { useUsers } from "../../../../hooks/use-users";
 
 interface ChatPartner {
@@ -36,10 +36,38 @@ export const CreateMessage: React.FC<CreateMessageProps> = ({
         type="text"
         value={text}
         onChange={(e) => setText(e.target.value)}
-        className="flex-1 p-2 border rounded"
         placeholder="Type a message..."
+        className="flex-1 p-2 rounded
+    bg-transparent
+    text-white
+    border
+    border-white/30
+    placeholder-white/50
+    focus:outline-none
+    focus:border-white
+    focus:ring-2
+    focus:ring-white/30
+    transition
+  "
       />
-      <button type="submit" className="ml-2 p-2 bg-blue-500 text-white rounded">
+
+      <button
+        type="submit"
+        className="
+    ml-2
+    p-2
+    bg-blue-500
+    text-white
+    rounded
+    cursor-pointer
+    transition
+    active:scale-95
+    hover:bg-blue-600
+    focus:outline-none
+    focus:ring-2
+    focus:ring-blue-400
+  "
+      >
         <Send />
       </button>
     </form>

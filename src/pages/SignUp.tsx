@@ -1,5 +1,5 @@
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
-import { ForgotPassword } from "../components/Auth/ForgetPassword";
+
 import useAuth from "../components/Auth/hooks/use-auth";
 import { SwitchLogin } from "../components/Auth/SwitchLogin";
 
@@ -7,7 +7,7 @@ const SignUp = () => {
   const {
     handleChange,
     handlePassword,
-    handleSubmit,
+    handleSubmitSignUp,
     name,
     email,
     password,
@@ -29,7 +29,7 @@ const SignUp = () => {
           />
         </div>
         <div className="w-full md:w-[67%] lg:w-[40%] lg:ml-12">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmitSignUp}>
             <input
               className={inputClassName}
               type="name"
@@ -74,7 +74,6 @@ const SignUp = () => {
                 question="Already have an account?"
                 text="Sign in instead"
               />
-              <ForgotPassword />
             </div>
 
             <button className={submitClassName} type="submit">

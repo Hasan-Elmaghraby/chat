@@ -6,6 +6,15 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import { Routes, Route } from "react-router";
 
+const video = document.querySelector("video");
+if (video) {
+  video.play().catch((err) => {
+    if (err.name !== "AbortError") {
+      console.error("Unexpected playback error:", err);
+    }
+  });
+}
+
 function App() {
   return (
     <div className="App ">

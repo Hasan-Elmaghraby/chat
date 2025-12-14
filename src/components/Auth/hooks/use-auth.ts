@@ -4,7 +4,7 @@ import classNames from "classnames";
 import { useUsers } from "../../../hooks/use-users";
 
 const useAuth = () => {
-  const { signup, setCurrentUser, users } = useUsers();
+  const { signin, setCurrentUser, users, signup } = useUsers();
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -21,7 +21,7 @@ const useAuth = () => {
     if (storedUser?.email) {
       setCurrentUser(storedUser);
     }
-  }, []);
+  }, [setCurrentUser]);
 
   useEffect(() => {
     if (email) {
@@ -31,9 +31,28 @@ const useAuth = () => {
         setCurrentUser(foundUser);
       }
     }
-  }, [users, email]);
+  }, [users, email, setCurrentUser]);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmitSignin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!email || !password) return;
+
+    try {
+      const user = await signin(email);
+
+      if (!user) {
+        console.error("Signup/Login failed.");
+        return;
+      }
+
+      localStorage.setItem("currentUser", JSON.stringify(user));
+      setCurrentUser(user);
+      navigate(`/chat/${user.id}`);
+    } catch (err) {
+      console.error("Error signing up/logging in:", err);
+    }
+  };
+  const handleSubmitSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!email || !password) return;
 
@@ -76,7 +95,7 @@ const useAuth = () => {
     setShowPassword(!showPassword);
   };
   return {
-    handleSubmit,
+    handleSubmitSignin,
     handleChange,
     handlePassword,
     name,
@@ -86,6 +105,7 @@ const useAuth = () => {
     inputClassName,
     submitClassName,
     pswIconClassName,
+    handleSubmitSignUp,
   };
 };
 

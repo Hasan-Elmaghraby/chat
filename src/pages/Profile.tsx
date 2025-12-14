@@ -11,7 +11,6 @@ const Profile = () => {
     email: currentUser?.email || "",
   });
 
-  const [imageFile, setImageFile] = useState<File | null>(null);
   useEffect(() => {
     if (currentUser) {
       setFormData({
@@ -24,8 +23,6 @@ const Profile = () => {
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setImageFile(e.target.files[0]);
-
       const reader = new FileReader();
       reader.onload = (event) => {
         if (event.target?.result) {

@@ -1,6 +1,7 @@
 import React from "react";
 import UsersButton from "../Users/components/UsersButton";
 import { Search } from "./components/Search";
+import Logout from "../Auth/Logout";
 
 interface HeaderSearchProps {
   open: boolean;
@@ -15,7 +16,10 @@ export const HeaderChat: React.FC<HeaderSearchProps> = ({
 }) => {
   return (
     <div className="bg-gray-500 w-full p-2 flex items-center justify-between overflow-hidden">
-      <UsersButton open={open} onClick={onClick} />
+      <div className="flex items-center space-x-2">
+        <Logout />
+        <UsersButton open={open} onClick={onClick} />
+      </div>
       <Search onChange={onChange} />
     </div>
   );

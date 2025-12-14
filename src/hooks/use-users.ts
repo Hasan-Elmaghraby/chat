@@ -27,7 +27,7 @@ export const useUsers = () => {
     name: string,
     email: string,
     password: string,
-    image: string
+    image?: string
   ): Promise<User | false> => {
     try {
       const res = await axios.get("http://localhost:3001/users");
@@ -49,6 +49,21 @@ export const useUsers = () => {
       return userRes.data;
     } catch (err) {
       console.error("Error during signup:", err);
+      return false;
+    }
+  };
+  const signin = async (email: string) => {
+    try {
+      const res = await axios.get("http://localhost:3001/users");
+      const existingUser = res.data.find((user: User) => user.email === email);
+
+      if (existingUser) {
+        setCurrentUser(existingUser);
+        localStorage.setItem("currentUser", JSON.stringify(existingUser));
+        return existingUser;
+      }
+    } catch (err) {
+      console.error("Error during signin:", err);
       return false;
     }
   };
@@ -74,5 +89,6 @@ export const useUsers = () => {
     signup,
     logout,
     setUsers,
+    signin,
   };
 };

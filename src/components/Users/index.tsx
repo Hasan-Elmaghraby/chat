@@ -24,7 +24,7 @@ export const Users: React.FC<UsersProps> = ({
       />
       <h1 className="text-3xl font-bold text-center mt-6">Users</h1>
 
-      <div className="overflow-y-auto h-[80%]">
+      <div className="overflow-y-auto min-h-screen bg-gray-500">
         {users.map((user) => (
           <div
             key={user.id}
