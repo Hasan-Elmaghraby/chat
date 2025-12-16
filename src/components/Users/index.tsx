@@ -1,23 +1,25 @@
 import { User } from "../../shared/types/user";
 import { ChatPartner } from "../../shared/types/chat";
+import { useUsersContext } from "../../hooks/use-users";
+import placeholderImage from "../../../public/placeholder.jpg";
+import placeholderImage3 from "../../../public/placeholder3.jpg";
 
 interface UsersProps {
-  users: User[];
   onSelect: (user: ChatPartner) => void;
   onClick: () => void;
   currentUser: User | null | undefined;
 }
 
 export const Users: React.FC<UsersProps> = ({
-  users,
   onSelect,
   onClick,
   currentUser,
 }) => {
+  const { users } = useUsersContext();
   return (
     <div className="p-4 bg-gray-500">
       <img
-        src={currentUser?.image}
+        src={currentUser?.image || placeholderImage}
         onClick={onClick}
         alt={currentUser?.name}
         className="w-16 h-16 rounded-full mx-auto mt-3 cursor-pointer"
@@ -32,7 +34,7 @@ export const Users: React.FC<UsersProps> = ({
           >
             <img
               onClick={() => onSelect(user as ChatPartner)}
-              src={user.image}
+              src={user.image || placeholderImage3}
               alt={user.name}
               className="w-12 h-12 rounded-full cursor-pointer"
             />

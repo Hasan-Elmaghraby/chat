@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useMessage } from "./use-message";
-import { useNavigate } from "react-router";
-import { useUsers } from "./use-users";
+import { useNavigate } from "react-router-dom";
 import { ChatPartner } from "../shared/types/chat";
+import { useUsersContext } from "./use-users";
 
 const useChat = () => {
   const navigate = useNavigate();
   const { fetchChats, chatsData } = useMessage();
-  const { currentUser, users } = useUsers();
+  const { currentUser, users } = useUsersContext();
   const [chatPartner, setChatPartner] = useState<
     ChatPartner | undefined | null
   >(null);

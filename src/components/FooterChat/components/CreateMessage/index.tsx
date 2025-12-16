@@ -1,7 +1,7 @@
 import { Send } from "lucide-react";
 import { useState } from "react";
 import { useMessage } from "../../../../hooks/use-message";
-import { useUsers } from "../../../../hooks/use-users";
+import { useUsersContext } from "../../../../hooks/use-users";
 
 interface ChatPartner {
   id: string;
@@ -17,13 +17,12 @@ export const CreateMessage: React.FC<CreateMessageProps> = ({
 }) => {
   const [text, setText] = useState("");
   const { createMessage } = useMessage();
-  const { currentUser } = useUsers();
-  const currentTime = new Date().toISOString();
+  const { currentUser } = useUsersContext();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!currentUser || !chatPartner || !text.trim()) return;
-    createMessage(currentUser?.id ?? "", chatPartner.id, text, currentTime);
+    createMessage(currentUser?.id ?? "", chatPartner.id, text);
     setText("");
   };
 

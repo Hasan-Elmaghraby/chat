@@ -1,87 +1,68 @@
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
-
 import useAuth from "../components/Auth/hooks/use-auth";
-import { SwitchLogin } from "../components/Auth/SwitchLogin";
+import { submitClassName, submitClassNameDisabled } from "../ui/classes";
+import { useUsersContext } from "../hooks/use-users";
+import { ToastContainer } from "react-toastify";
 
 const SignUp = () => {
-  const {
-    handleChange,
-    handlePassword,
-    handleSubmitSignUp,
-    name,
-    email,
-    password,
-    showPassword,
-    inputClassName,
-    submitClassName,
-    pswIconClassName,
-  } = useAuth();
+  const { loading } = useUsersContext();
+  const { formData, handleChange, handleSignup, showPassword, handlePassword } =
+    useAuth();
+  const { name, email, password } = formData;
 
   return (
-    <section>
-      <h1 className="text-3xl font-bold text-center mt-6">Sign Up</h1>
-      <div className="flex justify-center items-center mt-6 flex-wrap px-6 py-12 max-w-6xl mx-auto">
-        <div className="  mb-12 md:mb-6  md:w-[67%] lg:w-[50%]">
-          <img
-            src="https://images.unsplash.com/flagged/photo-1564767609342-620cb19b2357?q=80&w=1546&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="key"
-            className="w-full rounded-2xl"
+    <section className="min-h-screen flex justify-center items-center bg-gray-50 px-6">
+      <form
+        onSubmit={handleSignup}
+        className="bg-white p-8 rounded-xl shadow-md w-full max-w-md"
+      >
+        <h1 className="text-2xl font-bold mb-6 text-center">Sign Up</h1>
+
+        <input
+          id="name"
+          value={name}
+          onChange={handleChange}
+          placeholder="Name"
+          className="mb-4 w-full px-4 py-2 border rounded"
+        />
+        <input
+          id="email"
+          value={email}
+          onChange={handleChange}
+          placeholder="Email"
+          type="email"
+          className="mb-4 w-full px-4 py-2 border rounded"
+        />
+        <div className="relative mb-4">
+          <input
+            id="password"
+            value={password}
+            onChange={handleChange}
+            type={showPassword ? "text" : "password"}
+            placeholder="Password"
+            className="w-full px-4 py-2 border rounded"
           />
-        </div>
-        <div className="w-full md:w-[67%] lg:w-[40%] lg:ml-12">
-          <form onSubmit={handleSubmitSignUp}>
-            <input
-              className={inputClassName}
-              type="name"
-              id="name"
-              value={name}
-              onChange={handleChange}
-              placeholder="Enter your name"
+          {showPassword ? (
+            <AiFillEyeInvisible
+              className="absolute right-3 top-2 cursor-pointer"
+              onClick={handlePassword}
             />
-            <input
-              className={inputClassName}
-              type="email"
-              id="email"
-              value={email}
-              onChange={handleChange}
-              placeholder="Email address"
+          ) : (
+            <AiFillEye
+              className="absolute right-3 top-2 cursor-pointer"
+              onClick={handlePassword}
             />
-            <div className="relative mb-6">
-              <input
-                className={inputClassName}
-                type={showPassword ? "text" : "password"}
-                id="password"
-                value={password}
-                onChange={handleChange}
-                placeholder="Password"
-              />
-              {showPassword ? (
-                <AiFillEyeInvisible
-                  className={pswIconClassName}
-                  onClick={handlePassword}
-                />
-              ) : (
-                <AiFillEye
-                  className={pswIconClassName}
-                  onClick={handlePassword}
-                />
-              )}
-            </div>
-
-            <div className="flex justify-between whitespace-nowrap text-sm sm:text-lg">
-              <SwitchLogin
-                to="/sign-in"
-                question="Already have an account?"
-                text="Sign in instead"
-              />
-            </div>
-
-            <button className={submitClassName} type="submit">
-              Sign up
-            </button>
-          </form>
+          )}
         </div>
-      </div>
+
+        <button
+          type="submit"
+          className={loading ? submitClassNameDisabled : submitClassName}
+        >
+          Sign Up
+        </button>
+      </form>
+      <ToastContainer />
     </section>
   );
 };

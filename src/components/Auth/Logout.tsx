@@ -1,10 +1,13 @@
 import React from "react";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
+import { useUsersContext } from "../../hooks/use-users";
+
 const Logout: React.FC = () => {
+  const { logout } = useUsersContext();
   const navigate = useNavigate();
-  const onLogout = () => {
-    localStorage.setItem("currentUser", "");
-    navigate("/");
+  const onLogout = async () => {
+    await logout();
+    navigate("/chat");
   };
   return (
     <button

@@ -1,112 +1,55 @@
-import { useUsers } from "../hooks/use-users";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useUsersContext } from "../hooks/use-users";
+import { Loader } from "../shared/components/Loader";
 
 const Profile = () => {
-  const { currentUser, users, setUsers, setCurrentUser } = useUsers();
+  const { currentUser, loading } = useUsersContext();
 
-  const [formData, setFormData] = useState({
-    image: currentUser?.image || "",
-    name: currentUser?.name || "",
-    email: currentUser?.email || "",
-  });
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Loader />
+      </div>
+    );
+  }
 
-  useEffect(() => {
-    if (currentUser) {
-      setFormData({
-        name: currentUser.name,
-        email: currentUser.email,
-        image: currentUser.image || "",
-      });
-    }
-  }, [currentUser]);
-
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        if (event.target?.result) {
-          setFormData((prevState) => ({
-            ...prevState,
-            image: event.target?.result as string,
-          }));
-        }
-      };
-      reader.readAsDataURL(e.target.files[0]);
-    }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      [e.target.id]: e.target.value,
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (!currentUser) return;
-
-    try {
-      const updatedUser = { ...currentUser, ...formData };
-
-      setCurrentUser(updatedUser);
-      setUsers(
-        users.map((user) => (user.id === currentUser.id ? updatedUser : user))
-      );
-
-      await axios.put(
-        `http://localhost:3001/users/${currentUser.id}`,
-        updatedUser
-      );
-    } catch (err) {
-      console.error("Error updating profile:", err);
-    }
-  };
+  if (!currentUser) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-red-500 text-lg">No user found. Please sign in.</p>
+      </div>
+    );
+  }
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-6xl mx-auto p-6">
-      <h1 className="text-3xl font-bold text-center mt-6">Profile</h1>
-      <div className="flex justify-center items-center mt-6 flex-wrap px-6 py-12">
-        <div className="mb-12 md:mb-6 md:w-[67%] lg:w-[50%]">
-          <img
-            src={formData.image}
-            alt="image profile"
-            className="w-full rounded-2xl"
-          />
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
-            className="mt-4"
-          />
-        </div>
-        <div className="w-full md:w-[67%] lg:w-[40%] lg:ml-12">
-          <input
-            className="w-full bg-gray-50 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-2"
-            id="email"
-            type="email"
-            onChange={handleChange}
-            value={formData.email}
-          />
+    <section className="min-h-screen flex items-center justify-center bg-gray-500 px-6">
+      <div
+        className="w-full max-w-xl  rounded-2xl shadow  bg-gray-200  p-6 lg:p-12
+        sm:p-8"
+      >
+        <h1 className="text-3xl font-bold text-center mb-6 text-blue-500 border-b-2 pb-2 w-fit mx-auto">
+          Profile
+        </h1>
 
-          <input
-            className="w-full bg-gray-50 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-2"
-            id="name"
-            type="text"
-            onChange={handleChange}
-            value={formData.name}
-          />
-          <button
-            type="submit"
-            className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        <div className="space-y-5 ">
+          <div
+            className="flex  flex-col space-y-1  border-b-2 pb-2
+           border-grey-300"
           >
-            Save
-          </button>
+            <p className="text-lg text-gray-500">Name</p>
+            <p className="text-2xl font-medium text-gray-900">
+              {currentUser.name || "—"}
+            </p>
+          </div>
+
+          <div className="flex  flex-col space-y-1 ">
+            <p className="text-lg text-gray-500">Email</p>
+            <p className="text-2xl font-medium text-gray-900">
+              {currentUser.email}
+            </p>
+          </div>
         </div>
       </div>
-    </form>
+    </section>
   );
 };
 

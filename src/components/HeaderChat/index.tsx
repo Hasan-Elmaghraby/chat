@@ -2,6 +2,7 @@ import React from "react";
 import UsersButton from "../Users/components/UsersButton";
 import { Search } from "./components/Search";
 import Logout from "../Auth/Logout";
+import { ToastContainer } from "react-toastify";
 
 interface HeaderSearchProps {
   open: boolean;
@@ -21,6 +22,7 @@ export const HeaderChat: React.FC<HeaderSearchProps> = ({
         <UsersButton open={open} onClick={onClick} />
       </div>
       <Search onChange={onChange} />
+      <ToastContainer />
     </div>
   );
 };

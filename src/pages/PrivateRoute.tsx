@@ -1,27 +1,22 @@
-import { Outlet, useNavigate, useLocation } from "react-router";
-import { useEffect } from "react";
-
-type User = {
-  id: string;
-};
+import { Outlet, Navigate, useLocation } from "react-router-dom";
+import { useUsersContext } from "../hooks/use-users";
+import { Loader } from "../shared/components/Loader";
 
 export const PrivateRoute = () => {
-  const navigate = useNavigate();
+  const { currentUser, loading } = useUsersContext();
   const location = useLocation();
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem("currentUser");
-    const user: User | null = storedUser ? JSON.parse(storedUser) : null;
+  if (loading) {
+    return <Loader />;
+  }
 
-    if (!user) {
-      navigate("/sign-in", { replace: true });
-      return;
-    }
+  if (!currentUser) {
+    return <Navigate to="/sign-in" state={{ from: location }} replace />;
+  }
 
-    if (location.pathname === "/chat") {
-      navigate(`/chat/${user.id}`, { replace: true });
-    }
-  }, [navigate, location.pathname]);
+  if (location.pathname === "/chat" || location.pathname === "/chat/") {
+    return <Navigate to={`/chat/${currentUser.id}`} replace />;
+  }
 
   return <Outlet />;
 };

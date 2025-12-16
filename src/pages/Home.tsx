@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
+import { useUsersContext } from "../hooks/use-users";
 
 export default function Home() {
+  const { currentUser } = useUsersContext();
+
+
   return (
     <main className="min-h-screen flex flex-col items-center justify-center bg-gray-50 px-6">
       <div className="max-w-2xl text-center">
@@ -13,12 +17,21 @@ export default function Home() {
           interface.
         </p>
 
-        <Link
-          to="/chat"
-          className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg text-lg font-medium hover:bg-blue-700 transition"
-        >
-          Go to Chat
-        </Link>
+        {currentUser ? (
+          <Link
+            to={`/chat/${currentUser.id}`}
+            className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg text-lg font-medium hover:bg-blue-700 transition"
+          >
+            Go to Chat
+          </Link>
+        ) : (
+          <Link
+            to="/sign-in"
+            className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg text-lg font-medium hover:bg-blue-700 transition"
+          >
+            Sign In to Chat
+          </Link>
+        )}
       </div>
 
       <footer className="absolute bottom-6 text-gray-400 text-sm">

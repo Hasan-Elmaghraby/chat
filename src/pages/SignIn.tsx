@@ -1,19 +1,22 @@
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { ToastContainer } from "react-toastify";
 import useAuth from "../components/Auth/hooks/use-auth";
 import { SwitchLogin } from "../components/Auth/SwitchLogin";
+import { useUsersContext } from "../hooks/use-users";
+import {
+  inputClassName,
+  pswIconClassName,
+  submitClassName,
+  submitClassNameDisabled,
+} from "../ui/classes";
 
 const SignIn = () => {
-  const {
-    handleChange,
-    handlePassword,
-    handleSubmitSignin,
-    email,
-    password,
-    showPassword,
-    inputClassName,
-    submitClassName,
-    pswIconClassName,
-  } = useAuth();
+  const { handleChange, handlePassword, handleSignin, formData, showPassword } =
+    useAuth();
+  const { loading } = useUsersContext();
+
+  const { email, password } = formData;
+
   return (
     <section>
       <h1 className="text-3xl font-bold text-center mt-6">Sign in</h1>
@@ -26,7 +29,7 @@ const SignIn = () => {
           />
         </div>
         <div className="w-full md:w-[67%] lg:w-[40%] lg:ml-12">
-          <form onSubmit={handleSubmitSignin}>
+          <form onSubmit={handleSignin}>
             <input
               className={inputClassName}
               type="email"
@@ -64,12 +67,17 @@ const SignIn = () => {
               />
             </div>
 
-            <button className={submitClassName} type="submit">
+            <button
+              className={loading ? submitClassNameDisabled : submitClassName}
+              type="submit"
+              disabled={loading}
+            >
               Sign in
             </button>
           </form>
         </div>
       </div>
+      <ToastContainer />
     </section>
   );
 };

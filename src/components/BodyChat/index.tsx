@@ -20,7 +20,6 @@ interface BodyChatProps {
 
 export const BodyChat: React.FC<BodyChatProps> = ({
   open,
-  users,
   currentUser,
   onSelect,
   onClick,
@@ -52,7 +51,6 @@ export const BodyChat: React.FC<BodyChatProps> = ({
       >
         {open && (
           <Users
-            users={users}
             currentUser={currentUser}
             onSelect={onSelect}
             onClick={onClick}

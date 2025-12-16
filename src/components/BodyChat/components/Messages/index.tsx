@@ -1,10 +1,13 @@
 import { useEffect } from "react";
 import { useMessage } from "../../../../hooks/use-message";
-import { useUsers } from "../../../../hooks/use-users";
+
 import TimeDifference from "../../../../shared/components/Clock";
 import { UserImage } from "../../../Users/components/UserImage";
 import { HighlightSearch } from "../../../../shared/components/HighlightSearch";
 import { ChatPartner } from "../../../../shared/types/chat";
+import { useUsersContext } from "../../../../hooks/use-users";
+import placeholderImage from "../../../../../public/placeholder.jpg";
+import placeholderImage2 from "../../../../../public/placeholder2.avif";
 
 interface ChatMessageProps {
   chatPartner: ChatPartner | undefined | null;
@@ -24,7 +27,7 @@ export const Messages: React.FC<ChatMessageProps> = ({
   statusUser,
 }) => {
   const { chatsData, fetchChats } = useMessage();
-  const { currentUser } = useUsers();
+  const { currentUser } = useUsersContext();
 
   useEffect(() => {
     if (currentUser?.id && chatPartner?.id) {
@@ -51,11 +54,15 @@ export const Messages: React.FC<ChatMessageProps> = ({
                 {!isSender ? (
                   <UserImage
                     status={statusPartner}
-                    src={partnerUserImage}
+                    src={partnerUserImage || placeholderImage2}
                     alt="User"
                   />
                 ) : (
-                  <UserImage status={statusUser} src={userImage} alt="User" />
+                  <UserImage
+                    status={statusUser}
+                    src={userImage || placeholderImage}
+                    alt="User"
+                  />
                 )}
 
                 <div
